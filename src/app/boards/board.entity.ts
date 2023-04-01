@@ -24,6 +24,7 @@ export interface BoardColumn {
 export interface BoardItem {
     id: Key;
     title: string;
+    description: string;
     assigned_column: Key | BoardColumn;
     assigned_users: Key[] | User[];
     created_at: string;

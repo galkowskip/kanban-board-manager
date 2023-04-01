@@ -10,7 +10,11 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require(
+      "@tailwindcss/line-clamp"
+    )
+  ],
   safelist: {
     greedy: [
       /^grid-cols-/
