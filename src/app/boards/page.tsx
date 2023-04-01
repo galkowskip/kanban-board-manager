@@ -35,7 +35,7 @@ export function BoardListItem({board} : {board: Board}) {
     return ( 
         <li>
             <Link href={`/boards/${board.id}`}>
-            {board.title}
+                {board.title}
             </Link>
         </li>
     )

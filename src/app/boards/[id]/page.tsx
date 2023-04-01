@@ -3,6 +3,7 @@ import { BoardColumn, Board, BoardItem } from "../board.entity"
 
 import { CreateNewItemButton } from "./CreateNewItemForm"
 import { BoardListItem } from "./BoardListItem"
+import { CreateNewColumnButton } from "./CreateNewColumnForm"
 
 const getBoardData = async function (id: string) {
     try {
@@ -38,7 +39,11 @@ export default async function BoardPage({ params }: { params: { id: string } }) 
 
     return (
         <main>
-            <h1>Board: {board.title}</h1>
+            <div className="flex justify-between">
+                <h1>Board: {board.title}</h1>
+
+                <CreateNewColumnButton boardId={board.id} />
+            </div>
 
             <div className={`w-full grid grid-col gap-5 mt-10`} style={{ gridTemplateColumns: `repeat(${columns.length}, 1fr)` }}>
                 {
