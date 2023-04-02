@@ -15,6 +15,7 @@ export interface BoardColumn {
     id: Key;
     title: string;
     board_id: Key | Board;
+    order: number;
     assigned_items?: BoardItem[];
     created_at: string;
     updated_at: string;

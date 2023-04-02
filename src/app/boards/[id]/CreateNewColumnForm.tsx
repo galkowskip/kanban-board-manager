@@ -1,17 +1,29 @@
 'use client'
 
 import { useRouter } from "next/navigation";
-import { Key } from "react";
+import { Board } from "../board.entity";
 
-export function CreateNewColumnButton({ boardId }: { boardId: Key }) {
+import { getBoardColumnsData, sortAllColumns } from "@/app/api/BoardHelper";
+
+export function CreateNewColumnButton({ board }: { board: Board }) {
 
     const router = useRouter()
+
+    const boardId = board.id
 
     const createColumn = async function (e: any) {
 
         e.preventDefault()
 
+        if (boardId === undefined || e.target.title.value === '' ) return
         try {
+            
+            const columns = await getBoardColumnsData(boardId)
+
+            const sortedColumns = await sortAllColumns(columns)
+
+            console.log(columns)
+            console.log(sortedColumns)
 
             const title = e.target.title.value 
 
@@ -23,8 +35,9 @@ export function CreateNewColumnButton({ boardId }: { boardId: Key }) {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    board: boardId,
-                    title: title
+                    board_id: boardId,
+                    title: title,
+                    order: columns.length
                 })
             })
 
