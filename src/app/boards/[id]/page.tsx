@@ -41,17 +41,17 @@ export default async function BoardPage({ params }: { params: { id: string } }) 
         <main>
             <div className="flex justify-between">
                 <h1>Board: {board.title}</h1>
-
-                <CreateNewColumnButton boardId={board.id} />
             </div>
 
-            <div className={`w-full grid grid-col gap-5 mt-10`} style={{ gridTemplateColumns: `repeat(${columns.length}, 1fr)` }}>
+            <div className={`w-full grid grid-col gap-5 mt-10`} style={{ gridTemplateColumns: `repeat(${columns.length + 1}, 1fr)` }}>
                 {
                     columns.map((column, index) => (
                         /* @ts-expect-error Async Server Component */
                         <BoardListColumn key={column.id} column={column} prevColumn={columns[index - 1]?.id} nextColumn={columns[index + 1]?.id} />
                     ))
                 }
+                
+                <CreateNewColumnButton boardId={board.id} />
             </div>
         </main>
     )
